@@ -15,7 +15,9 @@ class UserController {
       accountId,
     });
 
-    return response.json({ username, password });
+    return response
+      .status(200)
+      .json({ message: `Registration done successfully` });
   }
 }
 
