@@ -1,9 +1,8 @@
-import { Router, Request, Response } from 'express';
+import { Router } from 'express';
+import usersRouter from '@modules/users/http/routes/UsersRoutes';
 
-const router = Router();
+const routes = Router();
 
-router.get('/', (request: Request, response: Response) => {
-  response.json({ message: `Hello NG.CA$H` });
-});
+routes.use('/users', usersRouter);
 
-export default router;
+export default routes;
