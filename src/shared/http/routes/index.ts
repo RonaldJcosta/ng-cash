@@ -7,6 +7,6 @@ const routes = Router();
 
 routes.use('/users', usersRouter);
 routes.use('/login', sessionsRouter);
-routes.use('/transactions', transactionsRouter);
+routes.use('/users', transactionsRouter);
 
 export default routes;

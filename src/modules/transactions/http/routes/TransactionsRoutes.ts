@@ -4,6 +4,6 @@ import ListTransactionsController from '../controllers/ListTransactionsControlle
 
 const transactionsRouter = Router();
 
-transactionsRouter.get('/', isAuthenticated, ListTransactionsController.index);
+transactionsRouter.get('/transactions', isAuthenticated, ListTransactionsController.index);
 
 export default transactionsRouter;

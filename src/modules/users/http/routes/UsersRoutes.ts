@@ -21,7 +21,7 @@ usersRouter.post(
 usersRouter.get('/balance', isAuthenticated, ShowUserBalanceController.show);
 
 usersRouter.post(
-  '/balance',
+  '/transactions',
   isAuthenticated,
   TransactionsUsersController.create,
 );
