@@ -43,7 +43,7 @@ class UsersRepository implements IUsersRepository {
       `
         SELECT users.account_id, users.username, accounts.balance AS balance
         FROM users
-        LEFT JOIN accounts ON accounts.id = users.account_id
+        INNER JOIN accounts ON accounts.id = users.account_id
         WHERE users.id = $1`,
       [id],
     );

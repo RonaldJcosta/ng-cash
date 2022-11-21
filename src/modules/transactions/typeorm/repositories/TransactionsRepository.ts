@@ -33,6 +33,16 @@ class TransactionsRepository implements ITransactionsRepository {
 
     return transactions;
   }
+
+  public async findTransactions(id: string): Promise<ITransactions[]> {
+    const transactions = await this.ormRepository.query(`
+      select accounts.id, transactions.debited_account_id , transactions.credited_account_id, transactions.value, transactions.created_at 
+      from accounts
+      inner join transactions ON transactions.debited_account_id = accounts.id or transactions.credited_account_id = accounts.id
+      where accounts.id = $1
+    `, [id]); 
+    return transactions;
+  }
 }
 
 export default TransactionsRepository;
