@@ -8,15 +8,13 @@ class UserController {
 
     const createUser = container.resolve(CreateUserService);
 
-    const accountId = '';
-    const user = await createUser.execute({
+    await createUser.execute({
       username,
       password,
-      accountId,
     });
 
     return response
-      .status(200)
+      .status(201)
       .json({ message: `Registration done successfully` });
   }
 }
