@@ -16,7 +16,7 @@ class Transactions implements ITransactions{
     @Column()
     value: number;
     
-    @Column()
+    @Column({name: 'created_at'})
     createdAt: Date;
 }
 

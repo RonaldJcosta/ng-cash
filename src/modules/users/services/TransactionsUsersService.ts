@@ -6,6 +6,8 @@ import AppError from '@shared/errors/AppError';
 import AccountsRepository from '@modules/account/typeorm/repositories/AccountsRepository';
 import { IAccountsRepository } from '@modules/account/domain/repositories/IAccountsRepository';
 import { IAccounts } from '@modules/account/domain/models/IAccounts';
+import TransactionsRepository from '@modules/transactions/typeorm/repositories/TransactionsRepository';
+import { ITransactionsRepository } from '@modules/transactions/domain/repositories/ITransactionsRepository';
 
 @injectable()
 class TransactionsUsersService {
@@ -15,6 +17,9 @@ class TransactionsUsersService {
 
     @inject(AccountsRepository)
     private accountsRepository: IAccountsRepository,
+
+    @inject(TransactionsRepository)
+    private transactionsRepository: ITransactionsRepository,
   ) {}
 
   public async execute({
@@ -50,6 +55,8 @@ class TransactionsUsersService {
       accountsOut.id,
       balanceCashOut,
     );
+
+    await this.transactionsRepository.create({debitedAccountId:accountsOut.id, creditedAccountId:accountsIn.id, value:balance});
     return account;
   }
 }

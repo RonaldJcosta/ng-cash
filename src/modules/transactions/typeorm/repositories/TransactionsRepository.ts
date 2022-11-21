@@ -21,14 +21,12 @@ class TransactionsRepository implements ITransactionsRepository {
   public async create({
     debitedAccountId,
     creditedAccountId,
-    value,
-    createdAt,
+    value
   }: ICreateTransactions): Promise<ITransactions> {
     const transactions = this.ormRepository.create({
       debitedAccountId,
       creditedAccountId,
-      value,
-      createdAt,
+      value
     });
 
     await this.ormRepository.save(transactions);

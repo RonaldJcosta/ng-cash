@@ -1,4 +1,5 @@
 import Accounts from '@modules/account/typeorm/entities/Accounts';
+import Transactions from '@modules/transactions/typeorm/entities/Transactions';
 import User from '@modules/users/typeorm/entities/User';
 import { DataSource } from 'typeorm';
 import { CreateUsers1668725144619 } from './migrations/1668725144619-CreateUsers';
@@ -12,7 +13,7 @@ export const dataSource = new DataSource({
   username: 'postgres',
   password: 'postgres',
   database: 'ngcash',
-  entities: [User, Accounts],
+  entities: [User, Accounts, Transactions],
   migrations: [
     CreateAccounts1668728080450,
     CreateUsers1668725144619,
