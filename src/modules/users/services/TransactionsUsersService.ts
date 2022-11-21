@@ -6,7 +6,6 @@ import AppError from '@shared/errors/AppError';
 import AccountsRepository from '@modules/account/typeorm/repositories/AccountsRepository';
 import { IAccountsRepository } from '@modules/account/domain/repositories/IAccountsRepository';
 import { IAccounts } from '@modules/account/domain/models/IAccounts';
-import { SimpleConsoleLogger } from 'typeorm';
 
 @injectable()
 class TransactionsUsersService {
@@ -23,36 +22,34 @@ class TransactionsUsersService {
     username,
     balance,
   }: IUserBalance): Promise<IAccounts> {
-    const accountCashOut = await this.usersRepository.findBalanceById({ id });
     const userCashout = await this.usersRepository.findById(id);
- 
-    if(userCashout.username === username) {
+
+    if (userCashout.username === username) {
       throw new AppError(`you cannot transfer to yourself`);
     }
 
-    const accountsOut = await this.accountsRepository.findById(userCashout.accountId)
+    const accountsOut = await this.accountsRepository.findById(
+      userCashout.accountId,
+    );
 
     if (balance > accountsOut.balance) {
       throw new AppError(`Insufficient funds`);
     }
 
-    const userCashInId  = await this.usersRepository.findByUsername(
-      username,
-    );
+    const userCashInId = await this.usersRepository.findByUsername(username);
 
-    const {accountId} = userCashInId;
+    const { accountId } = userCashInId;
 
     const accountsIn = await this.accountsRepository.findById(accountId);
 
-   const balanceCashOut =  accountsOut.balance - balance;
-   const balanceCashIn = accountsIn.balance + balance;
+    const balanceCashOut = accountsOut.balance - balance;
+    const balanceCashIn = accountsIn.balance + balance;
 
-   console.log(balanceCashOut)
-   console.log(balanceCashIn)
-
-    
     await this.accountsRepository.update(accountsIn.id, balanceCashIn);
-     const account = await this.accountsRepository.update(accountsOut.id, balanceCashOut);
+    const account = await this.accountsRepository.update(
+      accountsOut.id,
+      balanceCashOut,
+    );
     return account;
   }
 }

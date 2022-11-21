@@ -31,8 +31,7 @@ export default function isAuthenticated(
     };
 
     return next();
-  } catch (err) {
-    console.error(err);
+  } catch {
     throw new AppError('Invalid JWT Token', 401);
   }
 }
