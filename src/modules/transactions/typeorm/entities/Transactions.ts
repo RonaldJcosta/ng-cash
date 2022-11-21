@@ -1,23 +1,22 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { ITransactions } from "../../domain/models/ITransactions";
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { ITransactions } from '../../domain/models/ITransactions';
 
 @Entity('transactions')
-class Transactions implements ITransactions{
+class Transactions implements ITransactions {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+  @Column({ name: 'debited_account_id' })
+  debitedAccountId: string;
 
-    @Column({name: 'debited_account_id'})
-    debitedAccountId: string;
+  @Column({ name: 'credited_account_id' })
+  creditedAccountId: string;
 
-    @Column({name: 'credited_account_id'})
-    creditedAccountId: string;
+  @Column()
+  value: number;
 
-    @Column()
-    value: number;
-    
-    @Column({name: 'created_at'})
-    createdAt: Date;
+  @Column({ name: 'created_at' })
+  createdAt: Date;
 }
 
 export default Transactions;

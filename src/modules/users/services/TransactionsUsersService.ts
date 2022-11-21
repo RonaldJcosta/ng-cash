@@ -56,7 +56,11 @@ class TransactionsUsersService {
       balanceCashOut,
     );
 
-    await this.transactionsRepository.create({debitedAccountId:accountsOut.id, creditedAccountId:accountsIn.id, value:balance});
+    await this.transactionsRepository.create({
+      debitedAccountId: accountsOut.id,
+      creditedAccountId: accountsIn.id,
+      value: balance,
+    });
     return account;
   }
 }

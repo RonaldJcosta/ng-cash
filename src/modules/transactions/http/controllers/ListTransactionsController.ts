@@ -4,13 +4,12 @@ import { container } from 'tsyringe';
 
 class ListTransactionsController {
   public async index(request: Request, response: Response): Promise<Response> {
-    const {id} = request.user;
-    console.log(id)
+    const { id } = request.user;
 
     const listTransactions = container.resolve(ListTransactionsService);
-
-    const transactions = await listTransactions.execute( id );
-    return response.status(200).json({ transactions });
+    const transactions = await listTransactions.execute(id);
+    
+    return response.status(200).json( transactions );
   }
 }
 
