@@ -8,7 +8,7 @@ import { CreateTransactions1668732105494 } from './migrations/1668732105494-Crea
 
 export const dataSource = new DataSource({
   type: 'postgres',
-  host: 'localhost',
+  host: 'db',
   port: 5432,
   username: 'postgres',
   password: 'postgres',
