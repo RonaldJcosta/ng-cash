@@ -51,6 +51,7 @@ class TransactionsUsersService {
     const balanceCashIn = accountsIn.balance + balance;
 
     await this.accountsRepository.update(accountsIn.id, balanceCashIn);
+
     const account = await this.accountsRepository.update(
       accountsOut.id,
       balanceCashOut,
@@ -61,6 +62,7 @@ class TransactionsUsersService {
       creditedAccountId: accountsIn.id,
       value: balance,
     });
+
     return account;
   }
 }

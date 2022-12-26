@@ -16,7 +16,7 @@ class AccountsRepository implements IAccountsRepository {
     return account;
   }
   public async create({ balance }: ICreateAccounts): Promise<IAccounts> {
-    const account = await this.ormRepository.create({ balance });
+    const account =  this.ormRepository.create({ balance });
 
     await this.ormRepository.save(account);
 

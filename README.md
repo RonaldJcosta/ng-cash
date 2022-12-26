@@ -1,3 +1,4 @@
+### Documentation build
 
 # Como rodar o projeto?
 
@@ -7,8 +8,8 @@ url base: localhost:3333
 
 Para cadastrar um usuario
 
-   Post localhost:3333/users
-
+  Post localhost:3333/users
+    example:
     {
         "username": "example"
         "password": "Password1"
@@ -18,6 +19,7 @@ Realizar o Login
 
   Post  localhost:3333/login
 
+    example:
     {
         "username": "example"
         "password": "Password1"
@@ -25,8 +27,8 @@ Realizar o Login
 
 Acessar o balance do usuario logado
 
-  GET  localhost:3333/users/balance
-   e passar no o bearer token no header
+
+    GET  localhost:3333/users/balance - H "Authorization : Bearer {TOKEN}"
 
 Realizar uma transação
 
